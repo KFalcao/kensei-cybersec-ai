@@ -99,11 +99,13 @@ Para dúvidas ou sugestões, entre em contato através de:
 - GitHub Issues
 - Email: [seu-email@exemplo.com]
 
-
-PROMT Utilizado: Crie um README.MD para o este repoitório que será de estudos de cybersec e IA. Faça commit desse projeto para o github no repositorio abaixo https://github.com/KFalcao/kensei-cybersec-ai
-
 ---
 
 **Data de Criação:** Abril de 2026
 
 **Status:** Em Desenvolvimento 🚧
+
+---
+
+PROMT Utilizado: Crie um README.MD para o este repoitório que será de estudos de cybersec e IA. Faça commit desse projeto para o github no repositorio abaixo https://github.com/KFalcao/kensei-cybersec-ai
+
