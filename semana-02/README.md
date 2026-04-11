@@ -25,6 +25,9 @@ Organizador de arquivos que classifica arquivos no diretório atual em subpastas
 ### 6. `quiz_cybersecurity.py`
 Quiz interativo sobre cibersegurança com 5 perguntas. Inclui perguntas sobre phishing, firewall, autenticação de dois fatores, senhas fracas e ransomware. Usa timeout para as respostas.
 
+### 7. `conversor_moedas.py`
+Conversor de moedas que faz a conversão entre USD, BRL e JPY usando taxas de câmbio fixas. O usuário informa a moeda de origem e o valor, e o script exibe os valores convertidos.
+
 ## Estrutura de Pastas
 
 - `docs/`: Pasta para armazenar documentos organizados (atualmente vazia).
