@@ -1,6 +1,6 @@
 # Semana 03 - Análise de Incidentes de Segurança Cibernética
 
-Esta pasta contém scripts e dados para análise de incidentes de segurança cibernética, incluindo limpeza de dados, exploração e visualização.
+Esta pasta contém scripts e dados para análise de incidentes de segurança cibernética, com foco no impacto financeiro dos ataques cibernéticos nas empresas. Inclui limpeza de dados, exploração, análise de dados privados e visualização de incidentes, utilizando tabelas que detalham os efeitos econômicos e de mercado causados por esses ataques.
 
 ## Arquivos
 
@@ -14,10 +14,10 @@ Esta pasta contém scripts e dados para análise de incidentes de segurança cib
 - **grafico_ataques_por_pais.png**: Imagem PNG da visualização dos ataques por país.
 - **grafico_tipo_empresa.html**: Visualização HTML dos tipos de empresa afetadas.
 - **grafico_tipo_empresa.png**: Imagem PNG da visualização dos tipos de empresa afetadas.
-- **incidents_master.csv**: Conjunto de dados bruto dos incidentes principais.
-- **incidents_master_cleaned.csv**: Conjunto de dados limpo dos incidentes principais.
-- **nao_utilizado_financial_impact.csv**: Tabela complementar sobre o impacto financeiro dos incidentes (pode ser utilizada no futuro).
-- **nao_utilizado_market_impact.csv**: Tabela complementar sobre o impacto no mercado (pode ser utilizada no futuro).
+- **incidents_master.csv**: Conjunto de dados bruto dos incidentes principais, incluindo detalhes sobre ataques cibernéticos.
+- **incidents_master_cleaned.csv**: Conjunto de dados limpo dos incidentes principais, preparado para análise.
+- **nao_utilizado_financial_impact.csv**: Tabela complementar que detalha o impacto financeiro dos ataques cibernéticos nas empresas, incluindo perdas econômicas e custos de recuperação (pode ser utilizada no futuro).
+- **nao_uttilizado_market_impact.csv**: Tabela complementar que descreve o impacto no mercado causado pelos incidentes de segurança, como efeitos na reputação e concorrência (pode ser utilizada no futuro).
 
 ## Visualizações
 
