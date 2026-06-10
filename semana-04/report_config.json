@@ -1,0 +1,7 @@
+{
+  "csv_path": "../semana-03/incidents_master_cleaned.csv",
+  "output_path": "relatorio_diario.md",
+  "focus": "Resumo executivo diário de incidentes",
+  "time": "08:00",
+  "task_name": "KenseiDailyReport"
+}
