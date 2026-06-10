@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+
+# Editor settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Environment variables
+.env
+
+# Streamlit and app artifacts
+/.streamlit/
+
+# History and uploaded files (user data)
+semana-07/history_pdfs/
+semana-07/pdf_history.json
+semana-07/soc_history.json
