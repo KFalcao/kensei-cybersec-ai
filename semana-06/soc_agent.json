@@ -1,0 +1,127 @@
+{
+  "name": "Agente de Investigação de Segurança (VirusTotal + URLScan)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0],
+      "id": "chat_trigger_sec",
+      "name": "When Chat Message Received"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um Analista de Inteligência de Ameaças (Threat Intelligence) sênior e investigador de segurança cibernética. Seu objetivo é analisar IPs, Domínios ou URLs fornecidos pelo usuário.\n\nDiretrizes de comportamento:\n1. Identifique se o usuário enviou um IP, Domínio ou URL.\n2. Utilize a ferramenta 'consultar_virustotal' para verificar a reputação geral (IPs, Domínios ou hashes de URLs).\n3. Utilize a ferramenta 'consultar_urlscan' especificamente se precisar de uma análise profunda de páginas web/URLs (comportamento, prints, redirecionamentos).\n4. Consolide as respostas e classifique o alvo estritamente em uma destas três categorias: [SEGURO], [SUSPEITO] ou [MALICIOSO].\n5. Explique detalhadamente o porquê da classificação com base nos motores de antivírus, taxas de detecção, país de hospedagem ou atividades suspeitas encontradas. Seja técnico, porém claro."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [260, 0],
+      "id": "agent_sec",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model2": "gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenai",
+      "typeVersion": 1.1,
+      "position": [180, 240],
+      "id": "openai_sec",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "name": "consultar_virustotal",
+        "description": "Utilize esta ferramenta para verificar a reputação de um IP, Domínio ou URL no VirusTotal. Passe o IP, Domínio ou o ID da URL como parâmetro.",
+        "method": "GET",
+        "url": "=https://www.virustotal.com/api/v3/search?query={{ $parameter.query }}",
+        "headers": [
+          {
+            "name": "x-apikey",
+            "value": "SUA_API_KEY_DO_VIRUSTOTAL"
+          }
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [320, 240],
+      "id": "tool_vt",
+      "name": "VirusTotal API"
+    },
+    {
+      "parameters": {
+        "name": "consultar_urlscan",
+        "description": "Utilize esta ferramenta para pesquisar o histórico ou realizar uma varredura de uma URL ou domínio no URLScan.io para analisar o comportamento da página.",
+        "method": "GET",
+        "url": "=https://urlscan.io/api/v1/search/?q=page.domain:{{ $parameter.query }}",
+        "headers": [
+          {
+            "name": "API-Key",
+            "value": "SUA_API_KEY_DO_URLSCAN"
+          }
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [460, 240],
+      "id": "tool_urlscan",
+      "name": "URLScan.io API"
+    }
+  ],
+  "connections": {
+    "When Chat Message Received": {
+      "main": [
+        [
+          {
+            "node": "agent_sec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "agent_sec",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VirusTotal API": {
+      "ai_tool": [
+        [
+          {
+            "node": "agent_sec",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "URLScan.io API": {
+      "ai_tool": [
+        [
+          {
+            "node": "agent_sec",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "clipColor": "#E91E63",
+  "id": "sec_investigator_wf"
+}

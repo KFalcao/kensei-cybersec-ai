@@ -1,74 +1,114 @@
-# Semana 07 — Resumo dos Projetos
+# Semana 07 — Apps Interativos e Prototipagem
 
-Este diretório contém vários protótipos e apps em Streamlit desenvolvidos durante a semana 07. Abaixo há uma descrição rápida de cada arquivo, instruções de execução e notas sobre dependências e arquivos de histórico.
+Este diretório reúne aplicações interativas em Python, muitos projetos com Streamlit e experimentos com IA e segurança.
 
-## Arquivos e descrições
+## 🚀 O que está aqui
 
-- `app.py` / `calculadora_imc.py`
-  - Calculadora de IMC (Índice de Massa Corporal).
-  - Entrada: peso (kg) e altura (m). Saída: valor do IMC, classificação (Abaixo do peso / Peso normal / Sobrepeso / Obesidade), barra de progresso visual e gráfico de faixas.
-
-- `dashboard.py`
-  - Dashboard para análise de ataques cibernéticos a partir de um CSV (`cyber_attacks.csv`).
-  - Funcionalidades: upload automático/por upload, sidebar com filtros (ano, país, tipo de ataque), KPIs, tabela, gráficos (por ano e top países) e mapa mundi choropleth.
-  - Observação: para o mapa é recomendado instalar `pycountry` para mapear nomes de países para ISO3.
-
-- `chatbot_openai.py`
-  - Chatbot que conversa com o usuário via API OpenAI.
-  - Mantém histórico em `st.session_state`, exibe mensagens em bolhas e possui campo para inserir `OPENAI_API_KEY` na sidebar.
-
-- `pdf_summarizer.py`
-  - Upload de PDF, extração de texto (PyPDF2), resumo e classificação via OpenAI e Q/A sobre o documento.
-  - Histórico salvo em `semana-07/pdf_history.json` e PDFs guardados em `semana-07/history_pdfs/`.
-
-- `soc_agent_ui.py`
-  - Interface para enviar um IP/URL a um agente SOC implementado no n8n via webhook.
-  - Mostra resultado na tela, salva histórico em `semana-07/soc_history.json` e permite exportar relatórios em PDF (usa `fpdf`) ou JSON.
-
-- `language_tutor.py`
-  - Instrutor de idiomas simples com plano de estudo, dicas, flashcards e exercícios rápidos.
-  - Opção de gerar conteúdo (ex.: frases, exercícios) via OpenAI quando a chave é fornecida.
-
-
-## Como executar (exemplos)
-
-1. Crie/ative um ambiente Python e instale dependências essenciais:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install streamlit pandas plotly altair openai PyPDF2 fpdf requests pycountry
-```
-
-2. Execute o app desejado (exemplos):
-
-```bash
-streamlit run semana-07/dashboard.py
-streamlit run semana-07/chatbot_openai.py
-streamlit run semana-07/pdf_summarizer.py
-streamlit run semana-07/soc_agent_ui.py
-streamlit run semana-07/language_tutor.py
-```
-
-Observações:
-- Para usar recursos da OpenAI, defina a variável `OPENAI_API_KEY` ou cole a chave no campo da sidebar dos apps.
-- O `dashboard.py` procura por `cyber_attacks.csv` na raiz ou `data/`. Caso não exista, use o uploader na sidebar.
-- O `soc_agent_ui.py` necessita da URL do webhook do n8n (configurar na sidebar ou via variável `N8N_SOC_WEBHOOK`).
-
-
-## Arquivos de histórico
-
-- `semana-07/pdf_history.json` — histórico de PDFs processados (quando existe).
-- `semana-07/history_pdfs/` — PDFs enviados pelo usuário.
-- `semana-07/soc_history.json` — histórico de investigações SOC.
-
-
-## Sugestões e próximos passos
-
-- Gerar um `requirements.txt` com as dependências usadas neste diretório.
-- Adicionar testes básicos e exemplos de dados (CSV) para facilitar demonstrações.
-- Melhorar UI/tema e adicionar autenticação quando expor webhooks.
+- `app.py` / `calculadora_imc.py` — calculadora de IMC com visualização e interpretação.
+- `dashboard.py` — painel de análise de ataques cibernéticos com filtros, gráficos e mapa.
+- `chatbot_openai.py` — chatbot conversacional usando OpenAI.
+- `pdf_summarizer.py` — uploader de PDF, extração de texto e resumo/Q&A com OpenAI.
+- `soc_agent_ui.py` — interface para investigações SOC com webhook n8n.
+- `language_tutor.py` — tutor de idiomas com exercícios e planos de estudo.
 
 ---
 
-Se quiser, eu gero o `requirements.txt` com as dependências detectadas e adiciono exemplos de uso/dados para cada app. Quer que eu crie isso agora?
+## 📌 Descrições rápidas
+
+### `app.py` / `calculadora_imc.py`
+Calculadora de Índice de Massa Corporal. O app recebe peso e altura, exibe o resultado, mostra a classificação e conta com visualizações para facilitar a interpretação.
+
+### `dashboard.py`
+Painel de análise de incidentes cibernéticos. Permite:
+- carregar dados por upload;
+- filtrar por ano, país e tipo de ataque;
+- ver KPIs, tabelas e gráficos;
+- exibir mapa mundi com intensidade de ataques.
+
+> Dica: instale `pycountry` para garantir o mapeamento correto de nomes de países para código ISO3.
+
+### `chatbot_openai.py`
+Chatbot interativo com histórico de conversa. O usuário pode inserir a chave `OPENAI_API_KEY` e interagir com a interface de bolhas de mensagem.
+
+### `pdf_summarizer.py`
+Ferramenta para resumir PDFs. Faz upload de arquivos, extrai texto com `PyPDF2`, usa OpenAI para gerar resumo e perguntas/respostas, e grava histórico local.
+
+### `soc_agent_ui.py`
+Interface para executar consultas SOC usando um webhook do n8n. Salva histórico e permite exportar respostas em PDF ou JSON.
+
+### `language_tutor.py`
+Tutor básico de idiomas com: planos de estudo, flashcards, exercícios e geração de conteúdo quando a chave OpenAI está disponível.
+
+---
+
+## ⚙️ Como rodar
+
+1. Crie e ative o ambiente virtual:
+
+```bash
+python -m venv .venv
+```
+
+No Windows:
+
+```powershell
+.venv\Scripts\activate
+```
+
+No macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+2. Instale as dependências necessárias:
+
+```bash
+pip install -r ../requirements.txt
+```
+
+3. Execute o app desejado:
+
+```bash
+streamlit run dashboard.py
+streamlit run chatbot_openai.py
+streamlit run pdf_summarizer.py
+streamlit run soc_agent_ui.py
+streamlit run language_tutor.py
+```
+
+---
+
+## 🧩 Dependências sugeridas
+
+Se precisar instalar apenas os pacotes usados nesta pasta:
+
+```bash
+pip install streamlit pandas plotly altair openai PyPDF2 fpdf requests pycountry
+```
+
+---
+
+## 📁 Arquivos de histórico e dados
+
+- `pdf_history.json` — histórico de PDFs processados.
+- `history_pdfs/` — PDFs enviados pelo usuário.
+- `soc_history.json` — histórico de consultas SOC.
+
+> O `dashboard.py` tenta localizar `cyber_attacks.csv` na raiz ou em `data/`; se não encontrar, use o uploader integrado.
+
+---
+
+## 💡 Recomendações
+
+- Use `semana-07/dashboard.py` para explorar visualmente padrões de ataques.
+- Use `chatbot_openai.py` e `pdf_summarizer.py` com `OPENAI_API_KEY` para testar funcionalidades de IA.
+- Configure a URL do webhook do n8n para utilizar `soc_agent_ui.py`.
+
+---
+
+## ✅ Próximos passos
+
+- Criar `requirements.txt` específico para `semana-07`.
+- Incluir exemplos de dados para o dashboard.
+- Adicionar instruções de configuração de webhook e de chaves de API.

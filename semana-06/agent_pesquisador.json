@@ -1,0 +1,130 @@
+{
+  "name": "Agente Pesquisador Investigativo",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0],
+      "id": "7bf36f96-3c0a-48a0-8a7e-40f4ce00b1db",
+      "name": "When Chat Message Received"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um pesquisador investigativo obstinado, detalhista e analítico. Seu objetivo é investigar a fundo qualquer assunto solicitado, utilizando as ferramentas disponíveis para cruzar informações, ler páginas web relevantes e consultar fontes oficiais ou históricas. Sempre forneça um resumo estruturado, factual, apontando contradições se houver, e citando as fontes encontradas de forma clara."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [220, 0],
+      "id": "e0cd7bd4-32e7-4b72-bd9e-28cf09f27027",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model2": "gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenai",
+      "typeVersion": 1.1,
+      "position": [160, 240],
+      "id": "4b6846fc-d7be-4fc4-9dfb-baef4302621f",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [350, 240],
+      "id": "879be277-c93d-400c-b258-6932463e2bfd",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [460, 240],
+      "id": "caef8ca1-40be-45a0-be95-0e6d63426e2e",
+      "name": "SerpAPI"
+    },
+    {
+      "parameters": {
+        "name": "ler_pagina_web",
+        "description": "Utilize esta ferramenta para ler o conteúdo de texto de uma URL específica encontrada nas pesquisas do Google.",
+        "url": "={{ $parameter.url }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [580, 240],
+      "id": "db000dfb-90cb-46a4-bc06-a8fa20fb97cc",
+      "name": "HTTP Request Tool"
+    }
+  ],
+  "connections": {
+    "When Chat Message Received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "clipColor": "#00FFAB",
+  "id": "pesquisador_investigativo_wf"
+}

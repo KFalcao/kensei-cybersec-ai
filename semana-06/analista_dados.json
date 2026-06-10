@@ -1,0 +1,136 @@
+{
+  "name": "Agente Analista de Dados (CSV + Python/Pandas)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0],
+      "id": "chat_trigger_node",
+      "name": "When Chat Message Received"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um Analista de Dados sênior especializado em extrair insights de arquivos CSV. O usuário enviará perguntas em linguagem natural sobre os dados fornecidos. Para responder, você DEVE interagir com a ferramenta de Código (Python/Pandas) para inspecionar o DataFrame, filtrar, agrupar ou calcular estatísticas. Use a calculadora para operações matemáticas simples se necessário. Traduza suas descobertas em respostas claras, profissionais e fáceis de entender em linguagem natural. Não mencione termos técnicos de código ou SQL para o usuário final, foque no resultado."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [440, 0],
+      "id": "ai_agent_node",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model2": "gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenai",
+      "typeVersion": 1.1,
+      "position": [380, 240],
+      "id": "openai_model_node",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [500, 240],
+      "id": "calculator_tool_node",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "name": "analisar_dados_pandas",
+        "description": "Use esta ferramenta para executar scripts Python utilizando a biblioteca Pandas para analisar o arquivo CSV carregado. O DataFrame já está disponível na variável 'df'. Retorne sempre o resultado final da análise estruturado.",
+        "language": "python",
+        "code": "# O n8n recebe os dados mapeados do nó anterior.\n# Você pode simular as operações do Pandas aqui utilizando os dados do contexto.\nimport pandas as pd\nimport json\n\n# Recupera os dados do CSV que foram convertidos no nó 'Processar CSV'\ncontext_data = _input.context.get('json_data', [])\ndf = pd.DataFrame(context_data)\n\n# Exemplo de execução dinâmica que o agente pode inferir\n# O Agente de IA reescreverá a lógica interna conforme a pergunta do usuário\nreturn {\n    \"mensagem\": \"DataFrame carregado com sucesso.\",\n    \"colunas\": list(df.columns),\n    \"linhas_totais\": len(df)\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolCode",
+      "typeVersion": 1,
+      "position": [620, 240],
+      "id": "code_tool_node",
+      "name": "Code Tool (Python)"
+    },
+    {
+      "parameters": {
+        "options": {
+          "options": {
+            "delimiter": ",",
+            "readAsString": true
+          }
+        }
+      },
+      "type": "n8n-nodes-base.convertFromFile",
+      "typeVersion": 1.1,
+      "position": [200, 0],
+      "id": "convert_csv_node",
+      "name": "Processar CSV"
+    }
+  ],
+  "connections": {
+    "When Chat Message Received": {
+      "main": [
+        [
+          {
+            "node": "Processar CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Processar CSV": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Tool (Python)": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "clipColor": "#FF5722",
+  "id": "analista_dados_csv_wf"
+}

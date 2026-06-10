@@ -1,148 +1,169 @@
 # Kensei Cybersec AI
 
-Um repositório dedicado ao estudo e desenvolvimento de soluções que combinam **Cibersegurança** e **Inteligência Artificial**.
+Bem-vindo ao repositório `Kensei Cybersec AI` — um espaço de aprendizado prático para projetos de cibersegurança, automação e inteligência artificial.
 
-## 🎯 Objetivo
+---
 
-Este projeto tem como objetivo explorar e documentar técnicas, ferramentas e estratégias na interseção entre cibersegurança e IA, incluindo:
+## 🌟 Visão Geral
 
-- Detecção de anomalias e ameaças usando ML
-- Análise de vulnerabilidades com IA
-- Sistemas de defesa adaptáveis
-- Processamento de linguagem natural para análise de segurança
-- Automação de respostas a incidentes
-- Padrões de detecção de ataques cibernéticos
+Este repositório reúne experimentos, aplicações e protótipos desenvolvidos por semana. O foco está em:
 
-## 📚 Estrutura do Repositório
+- aprendizado contínuo em Python;
+- exemplos de análise de dados de segurança;
+- automações e utilitários práticos;
+- aplicações interativas com Streamlit;
+- integração com APIs e agentes inteligentes.
 
-```
+---
+
+## 📁 Estrutura de Pastas
+
+```text
 kensei-cybersec-ai/
-├── README.md
-├── docs/
-│   └── Documentação e guias de estudo
-├── notebooks/
-│   └── Jupyter notebooks para análise e experimentação
-├── src/
-│   └── Código-fonte de aplicações e ferramentas
-├── datasets/
-│   └── Conjuntos de dados para treinamento e análise
-├── models/
-│   └── Modelos de ML treinados
-└── requirements.txt
+├── .env.example        # modelo de variáveis de ambiente
+├── .gitignore
+├── README.md           # documento principal do repositório
+├── requirements.txt    # dependências Python do projeto
+├── semana-02/          # exercícios básicos e utilitários em Python
+├── semana-03/          # análise de dados de incidentes e visualização
+├── semana-04/          # apps menores, automações e chatbots simples
+├── semana-05-cancelada/ # pasta reservada para semana cancelada
+├── semana-06/          # protótipos de agentes e definições JSON
+└── semana-07/          # apps interativos e projetos Streamlit
 ```
-
-## 🛠️ Tecnologias
-
-- **Python 3.x** - Linguagem principal
-- **TensorFlow / PyTorch** - Frameworks de ML
-- **Scikit-learn** - Machine Learning
-- **Pandas / NumPy** - Processamento de dados
-- **Jupyter Notebooks** - Experimentação interativa
-- **Git** - Controle de versão
-
-## 🚀 Como Começar
-
-### Pré-requisitos
-
-- Python 3.8+
-- pip ou conda
-- Git
-
-### Instalação
-
-```bash
-# Clone o repositório
-git clone https://github.com/KFalcao/kensei-cybersec-ai.git
-cd kensei-cybersec-ai
-
-# Crie um ambiente virtual
-python -m venv venv
-source venv/bin/activate  # No Windows: venv\Scripts\activate
-
-# Instale as dependências
-pip install -r requirements.txt
-```
-
-## 📖 Tópicos de Estudo
-
-### Segurança
-- Malware Analysis
-- Network Security
-- Threat Intelligence
-- Vulnerability Assessment
-- Incident Response
-
-### Inteligência Artificial
-- Supervised Learning
-- Unsupervised Learning
-- Deep Learning
-- Natural Language Processing (NLP)
-- Anomaly Detection
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fazer um Fork do projeto
-2. Criar uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abrir um Pull Request
-
-## 📝 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
-
-## 📧 Contato
-
-Para dúvidas ou sugestões, entre em contato através de:
-- GitHub Issues
-- Email: [seu-email@exemplo.com]
 
 ---
 
-**Data de Criação:** Abril de 2026
+## 📌 Descrição por Pasta
 
-**Status:** Em Desenvolvimento 🚧
+### `semana-02/`
+Projetos introdutórios com pequenos scripts e utilitários para prática em Python.
+
+Exemplos:
+- `celsius_to_fahrenheit.py` — conversão de temperaturas
+- `conversor_moedas.py` — conversão de moedas
+- `gerador_senhas.py` — geração de senhas seguras
+- `lista_de_compras.py` — organizador de itens
+- `organizador_arquivos.py` — automação de arquivos
+- `quiz_cybersecurity.py` — quiz de cibersegurança
+
+### `semana-03/`
+Análise de dados de incidentes de segurança e preparação de gráficos.
+
+Exemplos:
+- `01_explore_data.py` — exploração inicial dos dados
+- `02_clean_data.py` — limpeza do conjunto de dados
+- `03_analyze_private.py` — análise adicional de incidentes
+- `04_visualize_incidents.py` — visualizações e gráficos
+- `incidents_master.csv` / `incidents_master_cleaned.csv` — dados usados nos scripts
+
+### `semana-04/`
+Aplicações e automações escritas em Python para tarefas práticas.
+
+Exemplos:
+- `app.py` — aplicação principal ou demo
+- `chatbot_terminal.py` — chatbot rodando no terminal
+- `translate.py` — tradução de texto
+- `run_report.py` — gera relatórios a partir de dados
+- `analyze_csv_report.py` / `analyze_text.py` — análise de CSV e texto
+
+### `semana-05-cancelada/`
+Espaço reservado para uma semana que foi cancelada.
+
+### `semana-06/`
+Protótipos de agentes e arquivos JSON para experimentação em agentes conversacionais.
+
+Arquivos notáveis:
+- `agent_pesquisador.json`
+- `agent_viagem.json`
+- `analista_dados.json`
+- `chat_calc.json`
+- `soc_agent.json`
+
+### `semana-07/`
+Projetos mais maduros e interativos, muitos usando Streamlit e automação de IA.
+
+Principais aplicações:
+- `dashboard.py` — painel de análise de ataques cibernéticos
+- `chatbot_openai.py` — chatbot com integração OpenAI
+- `pdf_summarizer.py` — resumo e Q/A de documentos PDF
+- `soc_agent_ui.py` — interface para agente SOC via webhook
+- `language_tutor.py` — tutor de idiomas com plano de estudos
+- `calculadora_imc.py` — ferramenta de cálculo de IMC
 
 ---
 
-PROMT Utilizado: Crie um README.MD para o este repoitório que será de estudos de cybersec e IA. Faça commit desse projeto para o github no repositorio abaixo https://github.com/KFalcao/kensei-cybersec-ai
+## 🚀 Como rodar o projeto
 
-## 📁 Projetos por Semana
+### 1. Criar ambiente Python
 
-A seguir há uma descrição resumida dos exemplos e apps organizados por pasta `semana-*`.
-
-- **semana-02/** — Scripts introdutórios e utilitários (ex.: `celsius_to_fahrenheit.py`, `conversor_moedas.py`, `gerador_senhas.py`, `hello.py`, `lista_de_compras.py`).
-- **semana-03/** — Análise de dados de incidentes: `01_explore_data.py`, `02_clean_data.py`, `03_analyze_private.py`, `04_visualize_incidents.py` e os datasets `incidents_master.csv` / `incidents_master_cleaned.csv`.
-- **semana-04/** — Pequenas aplicações e automações (ex.: `app.py`, `chatbot_terminal.py`, `translate.py`, `run_report.py`).
-- **semana-06/** — Definições de agentes e protótipos (arquivos JSON de agentes para experimentação).
-- **semana-07/** — Aplicações Streamlit e ferramentas interativas importantes:
-	- `calculadora_imc.py`: calculadora de IMC com visualização e gráfico.
-	- `dashboard.py`: dashboard para análise de ataques cibernéticos a partir de CSV (KPIs, gráficos, mapa mundi choropleth).
-	- `chatbot_openai.py`: chatbot com histórico em sessão e bolhas de chat; usa `OPENAI_API_KEY`.
-	- `pdf_summarizer.py`: upload de PDFs, extração de texto (PyPDF2), resumo/classificação via OpenAI e Q/A sobre o documento; histórico salvo em `semana-07/pdf_history.json` e PDFs em `semana-07/history_pdfs/`.
-	- `soc_agent_ui.py`: UI que chama um agente SOC no n8n via webhook, mostra resultado, salva histórico e permite exportar relatórios em PDF/JSON.
-	- `language_tutor.py`: instrutor de idiomas com plano de estudos, flashcards, exercícios e integração opcional com OpenAI para gerar conteúdo.
-
-## ▶️ Executando exemplos Streamlit
-
-1. Crie/ative seu ambiente Python e instale dependências (exemplo):
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # ou .venv\Scripts\activate no Windows
+```
+
+### 2. Ativar o ambiente
+
+No Windows:
+
+```powershell
+.venv\Scripts\activate
+```
+
+No macOS / Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+### 3. Instalar dependências
+
+```bash
 pip install -r requirements.txt
 ```
-2. Execute um app na pasta `semana-07`, por exemplo:
+
+### 4. Executar um app Streamlit
+
 ```bash
 streamlit run semana-07/dashboard.py
+```
+
+Outros exemplos:
+
+```bash
 streamlit run semana-07/chatbot_openai.py
 streamlit run semana-07/pdf_summarizer.py
 ```
 
-## ℹ️ Observações
-- Vários exemplos requerem chaves externas (ex.: `OPENAI_API_KEY`) — defina via variável de ambiente ou copie `.env.example` para `.env`.
-- O diretório `semana-07/` também possui um README local (`semana-07/README.md`) com descrições detalhadas de cada app.
-- Este README é um panorama rápido; cada pasta `semana-*` contém documentação e comentários nos próprios scripts.
+---
+
+## ⚠️ Observações
+
+- Alguns exemplos podem exigir variáveis de ambiente, como `OPENAI_API_KEY`.
+- Use o arquivo `.env.example` como modelo ao criar um arquivo `.env`.
+- Cada pasta `semana-*` pode ter documentação própria e comentários nos scripts.
+
+---
+
+## 💡 Dicas
+
+- Comece por `semana-02/` se quiser revisar conceitos básicos em Python.
+- Vá para `semana-03/` para trabalhar com análise de dados de incidentes.
+- Explore `semana-07/` para ver aplicações interativas e integrações com IA.
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas!
+
+1. Faça um fork
+2. Crie uma branch de feature
+3. Abra um pull request
+
+---
+
+## 📚 Licença
+
+Projeto distribuído sob a licença MIT.
 
 

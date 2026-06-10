@@ -1,0 +1,128 @@
+{
+  "name": "Agente Consultor de Viagens Expert",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0],
+      "id": "chat_trigger_travel",
+      "name": "When Chat Message Received"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um Consultor de Viagens sênior e Concierge de Turismo especialista. Seu objetivo é ajudar o usuário a planejar as melhores férias possíveis.\n\nDiretrizes de comportamento:\n1. Adote um tom empolgante, profissional e prestativo.\n2. Se o usuário não fornecer, pergunte educadamente sobre o destino de interesse, orçamento disponível, duração da viagem, estilo de viagem (aventura, luxo, mochilão, família) e restrições.\n3. Use a ferramenta 'buscar_informacoes_viagem' (SerpAPI) para pesquisar opções reais de voos, hotéis bem avaliados, clima atual e principais atrações do destino.\n4. Use a ferramenta 'calculadora_custos' para estruturar estimativas financeiras, somar custos diários e simular conversões de moedas se necessário.\n5. Entregue roteiros estruturados dia a dia, dicas locais exclusivas, estimativa de custos totais e sugestões de logística (como se locomover).\n\nNunca invente preços ou rotas se não tiver certeza; prefira pesquisar usando as ferramentas."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [260, 0],
+      "id": "agent_travel",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model2": "gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenai",
+      "typeVersion": 1.1,
+      "position": [120, 220],
+      "id": "openai_travel",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "name": "buscar_informacoes_viagem",
+        "description": "Utilize esta ferramenta para buscar informações atualizadas na web sobre voos, hotéis, atrações turísticas, restaurantes, clima local e exigências de visto para o destino informado.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [260, 220],
+      "id": "serpapi_travel",
+      "name": "SerpAPI"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [380, 220],
+      "id": "calculator_travel",
+      "name": "calculadora_custos"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [220, -160],
+      "id": "memory_travel",
+      "name": "Window Buffer Memory"
+    }
+  ],
+  "connections": {
+    "When Chat Message Received": {
+      "main": [
+        [
+          {
+            "node": "agent_travel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "agent_travel",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "agent_travel",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "calculadora_custos": {
+      "ai_tool": [
+        [
+          {
+            "node": "agent_travel",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "agent_travel",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "clipColor": "#00BCD4",
+  "id": "travel_consultant_agent_wf"
+}
